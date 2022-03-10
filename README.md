@@ -10,7 +10,7 @@
 <br>
 
 #### O projeto foi desenvolvido utilizando express, com acréscimo de validação JWT e yup.
-#### Na imagem podemos ver um dos métodos HTTP (GET) sendo executado.
+#### A imagem mostra um dos métodos HTTP (GET) sendo executado no insomnia.
 #### O método retorna o json contendo os dados e seus relacionamentos com outros models.
 <br>
 
