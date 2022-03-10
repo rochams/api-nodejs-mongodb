@@ -1,10 +1,9 @@
-const req = require("express/lib/request")
 const jwt = require('jsonwebtoken');
 const config = require('../../config/authentication');
-const { promisify } = require('util')
+const { promisify } = require('util');
 
 
-module.exports = async (rew, res, next) => {
+module.exports = async (req, res, next) => {
 
     const authmid = req.headers.authorization;
 
@@ -26,7 +25,7 @@ module.exports = async (rew, res, next) => {
                 msg: "token expirado."
             })
         } else {
-            req.user_id = uncode.id;
+            req.aluno_id = uncode.id;
             next();
         }
     } catch {

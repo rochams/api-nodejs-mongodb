@@ -1,9 +1,7 @@
 const mongoose = require('mongoose');
 
-const Aluno = mongoose.Schema({
-    nome: {type: String, required: true},
-    cpf: {type: Number, required: true},
-    email: {type: String, required: true}
+const Nota = mongoose.Schema({
+    nota: {type: Number, required: true},
     
 },
 {
@@ -11,4 +9,4 @@ const Aluno = mongoose.Schema({
 });
 
 // o primeiro parâmetro é como ficará no db, e o segundo é qual objeto ele referencia.
-module.exports = mongoose.model('aluno', Aluno);
+module.exports = mongoose.model('nota', Nota);

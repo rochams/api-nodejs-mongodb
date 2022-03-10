@@ -16,8 +16,8 @@ class CursoController {
 
         
         // verificação de existência na base de dados:
-
-        let cursoExists = await Curso.findOne({ nome: req.body.nome });
+        const id = req.body._id
+        let cursoExists = await Curso.findById({ id });
 
         if (cursoExists) {
             return res.status(400).json({

@@ -99,6 +99,7 @@ class AlunoController {
                 nome: alunoExists.nome,
                 email: alunoExists.email,
             },
+
             
             token: jwt.sign({id: alunoExists._id}, config.secret, {expiresIn: config.expire})
         })
