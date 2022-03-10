@@ -37,17 +37,20 @@ class MatriculaController {
             return res.json({aviso: "Erro ao cadastrar matricula."})
     };
     async delMatricula(req, res) {
+        const id = req.body._id
 
-        await Matricula.findOneAndDelete({numero: req.body.numero});
+        await Matricula.findByIdAndDelete({id});
         
 
     }
 
     async updateMatricula(req, res) {
+        const id = req.body._id
 
-        if (await Matricula.findOneAndDelete({numero: req.body.numero}))
+        if (await Matricula.findByIdAndUpdate({id}))
             return res.status(200).json({msg: "Cadastro alterado com sucesso."})
 
+        return res.status(400).json({msg: "Não foi possível alterar o cadastro."})
     }
 };
 

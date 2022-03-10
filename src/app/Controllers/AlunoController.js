@@ -70,9 +70,9 @@ class AlunoController {
         })
     };
     async delAluno(req, res) {
-
+        const id = req.body._id
         // excluindo aluno pelo campo e-mail
-        await Aluno.findOneAndDelete({email: req.body.email});
+        await Aluno.findByIdAndDelete({id});
 
         await Aluno.find({}).sort({"name": 1});
         
@@ -107,7 +107,9 @@ class AlunoController {
 
     async updateAluno(req, res) {
 
-        if (await Aluno.findOneAndDelete({email: req.body.email}))
+        const id = req.body._id
+
+        if (await Aluno.findByIdAndUpdate({id}))
             return res.status(200).json({msg: "Cadastro alterado com sucesso."})
 
     }

@@ -42,16 +42,24 @@ class CursoController {
     
     async delCurso(req, res) {
 
-        await Curso.findOneAndDelete({nome: req.body.name});
+        const id = req.body._id
+        const del = await Curso.findByIdAndDelete({id});
 
+        if (del)
+            return res.status(200).json({msg: "Curso excluído com sucesso."})
+
+        return res.status(400).json({msg: "Não foi possível excluir o curso."})
 
     }
 
     async updateCurso(req, res) {
 
-        if (await Curso.findOneAndDelete({nome: req.body.nome}))
+        const id = req.body._id
+
+        if (await Curso.findByIdAndUpdate({id}))
             return res.status(200).json({msg: "Curso alterado com sucesso."})
 
+        return res.status(400).json({msg: "Não foi possível alterar o cadastro."})
     }
 };
 
