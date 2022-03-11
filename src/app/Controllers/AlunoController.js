@@ -108,9 +108,11 @@ class AlunoController {
 
     async updateAluno(req, res) {
 
-        const id = req.body._id
 
-        if (await Aluno.findByIdAndUpdate({id}))
+        if (await Curso.updateOne(
+            { _id: req.body._id },
+            { nome: req.body.nome }
+        ))
             return res.status(200).json({msg: "Cadastro alterado com sucesso."})
 
     }

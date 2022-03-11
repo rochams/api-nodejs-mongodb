@@ -16,8 +16,8 @@ class CursoController {
 
         
         // verificação de existência na base de dados:
-        const id = req.body._id
-        let cursoExists = await Curso.findById({ id });
+        const nome = req.body.nome
+        let cursoExists = await Curso.findById({ nome });
 
         if (cursoExists) {
             return res.status(400).json({
@@ -54,10 +54,14 @@ class CursoController {
 
     async updateCurso(req, res) {
 
-        const id = req.body._id
+        const nome = req.body.nome
 
-        if (await Curso.findByIdAndUpdate({id}))
-            return res.status(200).json({msg: "Curso alterado com sucesso."})
+        // alteração do nome
+        if (await Curso.updateOne(
+            { _id: req.body._id },
+            { nome: req.body.nome }
+        ))
+            return res.status(200).json({msg: 'Curso alterado com sucesso.'})
 
         return res.status(400).json({msg: "Não foi possível alterar o cadastro."})
     }
