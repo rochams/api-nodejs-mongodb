@@ -6,7 +6,7 @@ class MatriculaController {
 
     async showMatricula(req, res){
 
-        let matriculas = await Matricula.find({}).sort({"numero": 1})
+        let matriculas = await Matricula.find({}).sort({"numero": 1}).populate('nota');
         return res.status(200).json({
             matriculas       // retorna o array com os nomes
         })
@@ -16,8 +16,8 @@ class MatriculaController {
 
         
         // verificação de existência na base de dados:
-
-        let MatriculaExists = await Matricula.findOne({ numero: req.body.numero });
+        const numero = req.body.numero
+        let MatriculaExists = await Matricula.findOne({ numero });
 
         if (MatriculaExists) {
             return res.status(400).json({
@@ -27,12 +27,12 @@ class MatriculaController {
 
         let newMatricula = new Matricula();
         newMatricula.numero = req.body.numero;
-
-
+        newMatricula.nota = req.body.nota;
         newMatricula.save();
 
+
         if(res.status(200))
-            return res.json({msg: "Matricula cadastrado com sucesso!"})
+            return res.json({msg: "Matrícula cadastrada com sucesso!"})
         if(res.status(400))
             return res.json({aviso: "Erro ao cadastrar matricula."})
     };

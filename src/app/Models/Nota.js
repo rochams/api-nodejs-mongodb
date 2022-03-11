@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
 
+
 const Nota = mongoose.Schema({
+
     nota: {type: Number, required: true},
     
 },
@@ -8,5 +10,7 @@ const Nota = mongoose.Schema({
     timestamps: true,
 });
 
-// o primeiro parâmetro é como ficará no db, e o segundo é qual objeto ele referencia.
+// timestamps adicionado pra se obter a informação de quandoa nota foi lançada
+
+
 module.exports = mongoose.model('nota', Nota);

@@ -1,8 +1,10 @@
 const mongoose = require('mongoose');
+const Nota = require('./Nota')
 
 const Matricula = mongoose.Schema({
     
     numero: {type: Number, required: true},
+    nota: {type: mongoose.ObjectId, ref: Nota, required: true}
     
 });
 

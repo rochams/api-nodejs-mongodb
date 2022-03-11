@@ -2,6 +2,7 @@ const { Router } = require('express');
 const AlunoController = require('./app/Controllers/AlunoController');
 const CursoController = require('./app/Controllers/CursoController');
 const MatriculaController = require('./app/Controllers/MatriculaController')
+const NotaController = require('./app/Controllers/NotaController')
 const AuthenticateMdw = require('./app/Middlewares/AutMiddleware');
 
 const routes = new Router();
@@ -28,7 +29,11 @@ routes.get('/matriculas', MatriculaController.showMatricula);
 routes.delete('/matricula/excluir', MatriculaController.delMatricula);
 routes.put('/matricula/alterar', MatriculaController.updateMatricula);
 
-
+// routes - notas
+routes.post('/nota/inserir', NotaController.addNota)
+routes.get('/notas', NotaController.showNota);
+routes.delete('/nota/excluir', NotaController.delNota);
+routes.put('/nota/alterar', NotaController.updateNota);
 
 
 module.exports = routes;
