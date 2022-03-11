@@ -55,6 +55,11 @@ class CursoController {
     async updateCurso(req, res) {
 
         const nome = req.body.nome
+        let cursoExists = await Curso.findById({ nome });
+
+        if(!cursoExists) {
+            return res.json({msg: "Curso não encontrado."})
+        }
 
         // alteração do nome
         if (await Curso.updateOne(
